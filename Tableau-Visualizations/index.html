@@ -1,0 +1,59 @@
+!DOCTYPE html
+html
+head
+    titleTableau Web Data Connectortitle
+    script src=httpsconnectors.tableau.comlibstableauwdc-4.0.0.js type=textjavascriptscript
+    script src=httpscdnjs.cloudflare.comajaxlibsjquery3.5.1jquery.min.jsscript
+head
+body
+    h1Tableau Web Data Connectorh1
+    
+    div id=tableauVizdiv
+
+    script
+         Define Tableau Web Data Connector
+        var myConnector = tableau.makeConnector();
+
+         Define the schema
+        myConnector.getSchema = function(schemaCallback) {
+            var cols = [{
+                id image,
+                alias Image,
+                dataType tableau.dataTypeEnum.string
+            }];
+
+            var tableInfo = {
+                id table,
+                alias Table,
+                columns cols
+            };
+
+            schemaCallback([tableInfo]);
+        };
+
+         Fetch data
+        myConnector.getData = function(table, doneCallback) {
+            var data = [{
+                image iframe src='https://public.tableau.com/app/profile/teja.manchala/viz/TableauPortfolioProject_17112668235010/Dashboard1?publish=yes' width='800' height='600'iframe
+            }];
+
+            table.appendRows(data);
+            doneCallback();
+        };
+
+         Register connector
+        tableau.registerConnector(myConnector);
+
+         Create Tableau Viz
+        function createTableauViz() {
+            tableau.connectionName = GitHub Tableau Visualization;
+            tableau.submit();
+        }
+
+         Create Tableau Viz on page load
+        $(document).ready(function() {
+            createTableauViz();
+        });
+    script
+body
+html
